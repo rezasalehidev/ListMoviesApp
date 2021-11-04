@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
 import CatMovies from "../components/CatMovies";
+import Card from "../components/Card";
 import Seprator from "../components/Seprator";
 import Colors from "../constants/Colors";
 
@@ -20,6 +21,18 @@ export default function HomeScreen() {
                 <FlatList
                     data={data}
                     renderItem={({ item }) => <CatMovies item={item} active={activeCat === item ? true : false} activeCat={activeCat} setActiveCat={(item) => setActiveCat(item)} />}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    ItemSeparatorComponent={() => <Seprator width={20} />}
+                    ListHeaderComponent={() => <Seprator width={20} />}
+                    ListFooterComponent={() => <Seprator width={20} />}
+                    keyExtractor={(item) => item}
+                />
+            </View>
+            <View>
+                <FlatList
+                    data={data}
+                    renderItem={({ item }) => <Card item={item} active={activeCat === item ? true : false} activeCat={activeCat} setActiveCat={(item) => setActiveCat(item)} />}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     ItemSeparatorComponent={() => <Seprator width={20} />}
